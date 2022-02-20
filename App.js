@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Application from './src';
+import DebugProvider from './src/context/debug';
 import TimeProvider from './src/context/time';
 import config from './src/engine/config';
 
@@ -15,18 +16,18 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(startCounter, 1000.0 / config.FPS);
-  }, [render])
+  }, [render]);
 
   return (
     <TimeProvider>
-      <View
-        // onTouchStart={startCounter}
-        // onTouchMove={startCounter}
-        style={styles.container}
-      >
-        <StatusBar style="auto" />
-        <Application />
-      </View>
+      <DebugProvider>
+        <View
+          style={styles.container}
+        >
+          <StatusBar style="auto" />
+          <Application />
+        </View>
+      </DebugProvider>
     </TimeProvider>
   );
 }
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#448',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
 });

@@ -1,14 +1,18 @@
-import React, { Children, createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useRef } from "react";
 
 const TimeContext = createContext();
 
 const TimeProvider = ({ children }) => {
 
-  const [deltaTime, setDeltaTime] = useState(0.0);
+  const deltaTime = useRef(0.0);
+
+  const setDeltaTime = (value) => {
+    deltaTime.current = value;
+  };
 
   return (
     <TimeContext.Provider value={{
-      deltaTime,
+      deltaTime: deltaTime.current,
       setDeltaTime,
     }}>
       {children}

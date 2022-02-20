@@ -1,5 +1,7 @@
+import { newVector } from "../models/engine/vector";
+
 export const maxForce = (force, max) => {
-  return { x: Math.min(force.x, max), y: Math.min(force.y, max) };
+  return newVector(Math.min(force.x, max), Math.min(force.y, max));
 };
 
 export const shouldBounce = (pos, force, minSize, maxSize) => {  
