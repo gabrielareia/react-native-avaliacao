@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { StyleSheet } from "react-native";
 import { newVector } from '../../engine/vector';
 import Object from './object';
@@ -9,6 +10,7 @@ const Circle = (props) => {
     position,
     rotation,
     size,
+    positionRef,
     ...rest
   } = props;
 
@@ -18,6 +20,10 @@ const Circle = (props) => {
       borderTopColor: 'black',
       borderTopWidth: 2,
     },
+  });
+
+  useEffect(() => {
+    if (positionRef) positionRef.current = position;
   });
 
   return (
@@ -43,6 +49,7 @@ Circle.propTypes = {
   position: PropTypes.object.isRequired,
   rotation: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
+  positionRef: PropTypes.object.isRequired,
 };
 
 export default Circle;

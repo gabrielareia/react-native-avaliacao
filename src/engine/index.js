@@ -11,7 +11,8 @@ export const gravityForce = (force, deltaTime) => {
   const acceleration = newVector(0, -9.81);
   const newForce = applyAcceleration(force, acceleration, deltaTime);
 
-  return maxForce(newForce, 50.0);
+  // return maxForce(newForce, 50.0);
+  return newForce;
 };
 
 export const applyForce = (pos, force) => {

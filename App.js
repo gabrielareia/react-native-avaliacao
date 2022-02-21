@@ -22,6 +22,7 @@ export default function App() {
     <TimeProvider>
       <DebugProvider>
         <View
+          onTouchStart={startCounter}
           style={styles.container}
         >
           <StatusBar style="auto" />

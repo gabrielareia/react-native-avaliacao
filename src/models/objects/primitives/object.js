@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import withTransform from '../../../hoc/withTransform';
+import { toWorldPosition } from '../../../utils/screenUtils';
 import { newVector } from '../../engine/vector';
 
 const Object = (props) => {
@@ -27,9 +28,23 @@ const Object = (props) => {
     },
   });
 
+  const worldPosition = toWorldPosition(position, Dimensions.get('window'));
+
   return (
-    <View {...rest} style={styles.element}>
-    </View>
+    <>
+      <View {...rest} style={styles.element}>
+      </View>
+      <Text
+        style={{ 
+          position: 'absolute', 
+          left: position.x - length, 
+          top: position.y - length - 25, 
+          width: 'auto' ,
+        }}
+      >
+        {`x: ${worldPosition.x.toFixed(2)}, y: ${worldPosition.y.toFixed(2)}`}
+      </Text>
+    </>
   );
 
 };
