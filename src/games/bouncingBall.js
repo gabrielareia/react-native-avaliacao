@@ -1,37 +1,37 @@
 import { useEffect, useRef } from 'react';
-import { Text } from 'react-native';
-import { useTime } from './context/time';
-import { useDebug } from './context/debug';
-import { addVectors, newVector, normalizeVector, scaleVector, vectorMagnitude } from './models/engine/vector';
-import CircleRigidbody from './models/objects/rigidbody/circleRigidbody';
-import Circle from './models/objects/primitives/circle';
+import PropTypes from 'prop-types';
+import { Dimensions, Text } from 'react-native';
+import { useTime } from '../engine/context/time';
+import { useDebug } from '../engine/context/debug';
+import { addVectors, newVector, normalizeVector, scaleVector, vectorMagnitude } from '../engine/models/engine/vector';
+import CircleRigidbody from '../engine/models/objects/rigidbody/circleRigidbody';
+import Circle from '../engine/models/objects/primitives/circle';
+import { toWorldPosition } from '../engine/utils/screenUtils';
 
-const Application = () => {
+const BouncingBall = (props) => {
+  const {
+    touchPosition,
+  } = props;
+
+  const touchToWorldPosition = () => {
+    const worldPosition = toWorldPosition(touchPosition, Dimensions.get('window'));
+    return worldPosition;
+  };
+
   const time = useRef(new Date().getTime());
+  const touchWorldPosition = useRef(touchToWorldPosition());
   const { deltaTime, setDeltaTime } = useTime();
   const { debugText, setDebugText, debugTextStyle } = useDebug();
-
-  useEffect(() => {
-    setDebugText(`FPS: ${Math.floor(1.0 / deltaTime)} 
-      \nDelta time: ${deltaTime}`
-    );
-
-    const newTime = new Date().getTime();
-    if (newTime > time.current) {
-      setDeltaTime((newTime - time.current) / 1000.0);
-      time.current = newTime;
-    }
-  });
 
   const circles = [
     {
       id: useRef(),
       color: "blue",
       size: 75,
-      initialPosition: newVector(0, -100),
+      initialPosition: touchWorldPosition.current,
       initialAcceleration: newVector(2, 0),
       position: useRef(newVector(0, 0)),
-      constrainedToScreen: true,
+      constrainedToScreen: false,
       rigidbody: false,
     },
     {
@@ -46,7 +46,28 @@ const Application = () => {
     },
   ];
 
+  useEffect(() => {
+    touchWorldPosition.current = touchToWorldPosition();
+  }, [touchPosition]);
+
+  useEffect(() => {
+    setDebugText(`FPS: ${Math.floor(1.0 / deltaTime)} 
+      \nDelta time: ${deltaTime}
+      \nTouch position: (x: ${touchPosition.x.toFixed(2)}, y: ${touchPosition.y.toFixed(2)})
+      \nTouch world position: (x: ${touchWorldPosition.current.x.toFixed(2)}, y: ${touchWorldPosition.current.y.toFixed(2)})`
+    );
+
+    const newTime = new Date().getTime();
+    if (newTime > time.current) {
+      setDeltaTime((newTime - time.current) / 1000.0);
+      time.current = newTime;
+    }
+  });
+
   const handleCircleCollisions = (position, force, acceleration, size, id) => {
+    if (circles && !circles.some((c) => c.id.current === id)) {
+      return [position, force, acceleration];
+    }
     const radius = size / 2.0;
 
     const validCircles = circles.filter((c) => c.id.current !== id);
@@ -59,19 +80,7 @@ const Application = () => {
       const difference = newVector(dx, dy);
       const distance = vectorMagnitude(difference);
 
-      // setDebugText(`DX: ${dx}
-      // \nDY: ${dy}
-      // \nDistance: ${distance}
-      // \nRadius: ${radius}
-      // \ncRadius: ${cRadius}
-      // \nsoma: ${radius + cRadius}`)
-
-      if (distance <= radius + cRadius) {
-        // const flipX = dx < size;
-        // const flipY = dy < size;
-        // const newForce = newVector(flipX ? -force.x : force.x, flipY ? -force.y : force.y);
-        // const newAcceleration = newVector(flipX ? -acceleration.x : acceleration.x, flipY ? -acceleration.y : acceleration.y);
-
+      if (distance <= radius + cRadius) {        
         const normalVector = normalizeVector(difference, distance);
         const scaledVector = scaleVector(normalVector, cRadius + radius);
 
@@ -127,4 +136,8 @@ const Application = () => {
   );
 };
 
-export default Application;
+BouncingBall.propTypes = {
+  touchPosition: PropTypes.object.isRequired,
+};
+
+export default BouncingBall;

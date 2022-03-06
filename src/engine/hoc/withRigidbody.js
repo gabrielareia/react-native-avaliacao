@@ -8,7 +8,7 @@ import {
   slowAcceleration,
   applyAcceleration,
   checkBounds,
-} from '../engine';
+} from '../';
 import { newVector } from '../models/engine/vector';
 import 'react-native-get-random-values';
 import { v4 as newUuid } from 'uuid';

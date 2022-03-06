@@ -1,7 +1,7 @@
-import { addVectors, newVector, scaleVector } from "../models/engine/vector";
-import { clamp } from "../utils/mathUtils";
-import { maxForce, shouldBounce } from "../utils/physicsUtils";
-import { toScreenCoordinates, toWorldPosition } from "../utils/screenUtils";
+import { addVectors, newVector, scaleVector } from "./models/engine/vector";
+import { clamp } from "./utils/mathUtils";
+import { shouldBounce } from "./utils/physicsUtils";
+import { toScreenCoordinates, toWorldPosition } from "./utils/screenUtils";
 
 export const applyAcceleration = (force, acceleration, deltaTime) => {
   return addVectors(force, scaleVector(acceleration, deltaTime));
@@ -11,7 +11,6 @@ export const gravityForce = (force, deltaTime) => {
   const acceleration = newVector(0, -9.81);
   const newForce = applyAcceleration(force, acceleration, deltaTime);
 
-  // return maxForce(newForce, 50.0);
   return newForce;
 };
 
