@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
-import { useColorScheme, View } from 'react-native';
+import {
+  useColorScheme,
+  StatusBar,
+} from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import HomeScreen from './screens/Home';
 import themes from '../src/styles/themes';
@@ -9,6 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AboutScreen from './screens/About';
 import { HeaderBackground, HeaderTitle } from './styles/styles';
 import Header from './screens/shared/header';
+import SideMenuScreen from './screens/SideMenu/sideMenu';
 
 const Application = () => {
 
@@ -42,13 +46,20 @@ const Application = () => {
 
   return (
     <ThemeProvider theme={state.theme || themes.light} >
+      <StatusBar
+        animated={true}
+        backgroundColor={state.theme.statusBarColor || '#424242'}
+        hidden={false}
+      />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='Home'
+          initialRouteName='SideMenu'
           screenOptions={{
-            header: (props) => <Header {...props} />
+            headerShown: false,
+            // header: (props) => <Header {...props} />
           }}
         >
+          <Stack.Screen name='SideMenu' component={SideMenuScreen} />
           <Stack.Screen name='Home' component={HomeScreen} />
           <Stack.Screen name='About' component={AboutScreen} />
         </Stack.Navigator>

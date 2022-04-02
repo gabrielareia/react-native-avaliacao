@@ -1,6 +1,10 @@
 export const dark = {
-  background: '#000',
-  color: '#fff',
-  border: '#fff',
-  buttonBackground: '#888',
+  statusBarColor: '#888888',
+  background: '#181828',
+  color: '#efefef',
+  border: '#585858',
+  buttonBackground: '#484848',
+  sideMenuItemBackground: '#2a2a2a',
+  sideMenuItemColor: '#efefef',
+  lightbulbColor: '#fff',
 };

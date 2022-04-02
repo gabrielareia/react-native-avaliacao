@@ -1,13 +1,13 @@
-import { TouchableOpacity } from "react-native";
-import { CenteredText } from "../../styles/styles";
+import { Text, TouchableOpacity } from "react-native";
+// import { CenteredText } from "../../styles/styles";
 
 const CustomButton = (props) => {
   const { children } = props;
   return (
     <TouchableOpacity {...props} >
-      <CenteredText>
+      <Text>
         {children}
-      </CenteredText>
+      </Text>
     </TouchableOpacity>
   );
 }

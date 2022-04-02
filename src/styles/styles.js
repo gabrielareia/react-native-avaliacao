@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import CustomButton from "../screens/shared/button";
+import LightbulbIcon from "../screens/SideMenu/components/lighbulb";
 
 export const Background = styled.View`
   background: ${(props) => props.theme.background};
@@ -45,4 +46,28 @@ export const StyledButton = styled(CustomButton)`
   max-height: ${(props) => props.maxHeight || '60px'};
   max-width: ${(props) => props.maxWidth || '90px'};
   border-radius: 5px;
+`;
+
+export const SideMenu = styled.View`
+  background: ${(props) => props.theme.background};
+  width: 70%;
+  height: 100%;
+  padding: 20px 0px;
+`;
+
+export const SideMenuItem = styled.View`
+  background: ${(props) => props.theme.sideMenuItemBackground};
+  width: 100%;
+  padding: 16px 20px;
+  margin: 1px 0;
+`;
+
+export const SideMenuItemText = styled.Text`
+  color: ${(props) => props.theme.sideMenuItemColor};
+  font-size: 20px;
+`;
+
+export const LightbulbTheme = styled(LightbulbIcon)`
+  color: ${(props) => props.theme.lightbulbColor};
+  padding: 16px;
 `;
