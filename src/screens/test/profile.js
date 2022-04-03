@@ -1,21 +1,21 @@
 import React from "react";
 import { Background, StyledButton, Title } from "../../styles/styles";
 
-const HomeScreen = (props) => {
+const ProfileScreen = (props) => {
   const {
     navigation,
   } = props;
 
   return (
     <Background>
-      <Title>Home</Title>
+      <Title>Profile</Title>
       <StyledButton
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('Friends')}
       >
-        Profile
+        Friends
       </StyledButton>
     </Background>
   );
 }
 
-export default HomeScreen;
+export default ProfileScreen;
