@@ -1,5 +1,4 @@
 import { Text, TouchableOpacity } from "react-native";
-// import { CenteredText } from "../../styles/styles";
 
 const CustomButton = (props) => {
   const { children } = props;

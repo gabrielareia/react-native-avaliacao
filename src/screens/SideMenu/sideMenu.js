@@ -1,41 +1,54 @@
-import { FlatList, TouchableOpacity } from "react-native";
-import {
-  SideMenuItem,
-  SideMenuItemText,
-  SideMenu,
-  LightbulbTheme,
-} from "../../styles/styles";
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from 'prop-types';
+import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
+import { View } from "react-native";
+import { useAppState } from "../../context/state";
+import IconButton from "../components/iconButton";
+import sideMenuStyle from "./styles/sideMenuStyle";
 
 const SideMenuScreen = (props) => {
   const {
-    navigation,
+    backgroundColor,
   } = props;
 
-  const menuItems = [
-    { title: 'Home', key: 1, redirect: 'Home' },
-    { title: 'Games', key: 2, redirect: 'Games' },
-    { title: 'About', key: 3, redirect: 'About' },
-  ];
+  const [state, setState] = useAppState();
+
+  const changeMode = () => {
+    setState({
+      ...state,
+      deviceTheme: state.deviceTheme === 'dark' ? 'light' : 'dark',
+    });
+  };
 
   return (
-    <SideMenu>
-      <FlatList
-        data={menuItems}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate(item.redirect)}
-          >
-            <SideMenuItem>
-              <SideMenuItemText>
-                {item.title}
-              </SideMenuItemText>
-            </SideMenuItem>
-          </TouchableOpacity>
+    <DrawerContentScrollView
+      style={{
+        backgroundColor: backgroundColor,
+      }}
+      contentContainerStyle={{
+        height: '100%',
+      }}
+      {...props}
+    >
+      <DrawerItemList {...props} />
+      <View style={{ marginTop: 'auto' }} />
+      <DrawerItem
+        style={sideMenuStyle(state).lightbulbStyle}
+        label={(props) => (
+          <IconButton
+            icon={faLightbulb}
+            {...props}
+          />
         )}
+        pressColor="#888"
+        onPress={changeMode}
       />
-      <LightbulbTheme />
-    </SideMenu>
+    </DrawerContentScrollView>
   );
 }
+
+SideMenuScreen.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+};
 
 export default SideMenuScreen;

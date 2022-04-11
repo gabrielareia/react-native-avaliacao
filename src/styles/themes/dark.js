@@ -4,7 +4,9 @@ export const dark = {
   color: '#efefef',
   border: '#585858',
   buttonBackground: '#484848',
-  sideMenuItemBackground: '#2a2a2a',
+  headerBackground: '#0c0c12',
+  sideMenuBackground: '#101020',
+  sideMenuItemBackground: '#1a1a2d',
   sideMenuItemColor: '#efefef',
-  lightbulbColor: '#fff',
+  iconsColor: '#fff',
 };

@@ -1,6 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import styled from "styled-components/native";
 import CustomButton from "../screens/shared/button";
-import LightbulbIcon from "../screens/SideMenu/components/lighbulb";
 
 export const Background = styled.View`
   background: ${(props) => props.theme.background};
@@ -16,27 +16,18 @@ export const Title = styled.Text`
 
 export const HeaderTitle = styled.Text`
   color: ${(props) => props.theme.color};
-  font-size: 20px;
-  font-weight: bold;
-  margin: auto 0;
+  font-size: 22px;
+  font-weight: 700;
+  margin: auto 22px;
 `;
 
 export const HeaderBackground = styled.View`
-  background: ${(props) => props.theme.background};
-  margin: 25px 0 0 0;
+  background: ${(props) => props.theme.headerBackground};
   height: 60px;
   border-bottom-width: 1px;
   border-bottom-color: ${(props) => props.theme.border};
   padding: 0 15px;
   flex-direction: row;
-  justify-content: space-between;
-`;
-
-export const CenteredText = styled.Text`
-  color: ${(props) => props.theme.color};
-  margin: auto;
-  font-size: 16px;
-  line-height: 20px;
 `;
 
 export const StyledButton = styled(CustomButton)`
@@ -48,26 +39,8 @@ export const StyledButton = styled(CustomButton)`
   border-radius: 5px;
 `;
 
-export const SideMenu = styled.View`
-  background: ${(props) => props.theme.background};
-  width: 70%;
-  height: 100%;
-  padding: 20px 0px;
-`;
-
-export const SideMenuItem = styled.View`
-  background: ${(props) => props.theme.sideMenuItemBackground};
-  width: 100%;
-  padding: 16px 20px;
-  margin: 1px 0;
-`;
-
-export const SideMenuItemText = styled.Text`
-  color: ${(props) => props.theme.sideMenuItemColor};
-  font-size: 20px;
-`;
-
-export const LightbulbTheme = styled(LightbulbIcon)`
-  color: ${(props) => props.theme.lightbulbColor};
-  padding: 16px;
+export const StyledIcon = styled(FontAwesomeIcon)`
+  color: ${(props) => props.theme.iconsColor};
+  padding: ${(props) => props.size || 14}px;
+  margin: ${(props) => props.verticalPadding || 'auto'} ${(props) => props.horizontalPadding || 0};
 `;
