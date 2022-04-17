@@ -46,8 +46,8 @@ const DrawerNavigation = () => {
         },
       }}
     >
-      <Drawer.Screen name={localization.homeScreenTitle} component={HomeScreen} />
-      <Drawer.Screen name={localization.aboutScreenTitle} component={AboutScreen} />
+      <Drawer.Screen name={localization.homeScreen.title} component={HomeScreen} />
+      <Drawer.Screen name={localization.aboutScreen.title} component={AboutScreen} />
     </Drawer.Navigator>
   );
 }

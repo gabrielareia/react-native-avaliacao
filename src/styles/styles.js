@@ -7,11 +7,17 @@ export const Background = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
+  padding: 10px 20px;
 `;
 
 export const Title = styled.Text`
   color: ${(props) => props.theme.color};
   font-size: 44px;
+`;
+
+export const Paragraph = styled.Text`
+  color: ${(props) => props.theme.color};
+  font-size: 16px;
 `;
 
 export const HeaderTitle = styled.Text`
@@ -30,13 +36,18 @@ export const HeaderBackground = styled.View`
   flex-direction: row;
 `;
 
-export const StyledButton = styled(CustomButton)`
+export const StyledButton = styled.TouchableOpacity`
   background: ${(props) => props.theme.buttonBackground};
-  margin: 5px;
+  margin: 15px;
   padding: 10px;
   max-height: ${(props) => props.maxHeight || '60px'};
   max-width: ${(props) => props.maxWidth || '90px'};
   border-radius: 5px;
+`;
+
+export const ButtonText = styled.Text`
+  color: ${(props) => props.theme.iconsColor}; 
+  margin: 2px 5px;
 `;
 
 export const StyledIcon = styled(FontAwesomeIcon)`

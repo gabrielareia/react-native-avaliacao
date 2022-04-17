@@ -1,6 +1,8 @@
 import React from "react";
+import { Text } from "react-native";
 import { useLocalization } from "../../context/localization";
-import { Background, StyledButton, Title } from "../../styles/styles";
+import { Background, Paragraph, Title } from "../../styles/styles";
+import CustomButton from "../shared/button";
 
 const HomeScreen = (props) => {
   const {
@@ -11,13 +13,13 @@ const HomeScreen = (props) => {
 
   return (
     <Background>
-      <Title>{localization.homeScreenTitle}</Title>
-      <Title>{localization.test}</Title>
-      <StyledButton
-        onPress={() => navigation.navigate('Profile')}
+      <Title>{localization.homeScreen.title}</Title>
+      <Paragraph>{localization.homeScreen.body}</Paragraph>
+      <CustomButton
+        onPress={() => navigation.navigate('Game')}
       >
-        Profile
-      </StyledButton>
+        {localization.homeScreen.playButton}
+      </CustomButton>
     </Background>
   );
 }

@@ -1,13 +1,13 @@
-import { Text, TouchableOpacity } from "react-native";
+import { ButtonText, StyledButton } from "../../styles/styles";
 
 const CustomButton = (props) => {
   const { children } = props;
   return (
-    <TouchableOpacity {...props} >
-      <Text>
+    <StyledButton {...props} >
+      <ButtonText>
         {children}
-      </Text>
-    </TouchableOpacity>
+      </ButtonText>
+    </StyledButton>
   );
 }
 
