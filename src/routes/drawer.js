@@ -9,11 +9,13 @@ import IconButton from "../screens/components/iconButton";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import SideMenuScreen from "../screens/SideMenu/sideMenu";
 import sideMenuStyle from "../screens/SideMenu/styles/sideMenuStyle";
+import { useLocalization } from "../context/localization";
 
 const DrawerNavigation = () => {
   const Drawer = createDrawerNavigator();
 
   const [state] = useAppState();
+  const { localization } = useLocalization();
 
   return (
     <Drawer.Navigator
@@ -44,8 +46,8 @@ const DrawerNavigation = () => {
         },
       }}
     >
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="About" component={AboutScreen} />
+      <Drawer.Screen name={localization.homeScreenTitle} component={HomeScreen} />
+      <Drawer.Screen name={localization.aboutScreenTitle} component={AboutScreen} />
     </Drawer.Navigator>
   );
 }

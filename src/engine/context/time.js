@@ -11,10 +11,12 @@ const TimeProvider = ({ children }) => {
   };
 
   return (
-    <TimeContext.Provider value={{
-      deltaTime: deltaTime.current,
-      setDeltaTime,
-    }}>
+    <TimeContext.Provider
+      value={{
+        deltaTime: deltaTime.current,
+        setDeltaTime,
+      }}
+    >
       {children}
     </TimeContext.Provider>
   );

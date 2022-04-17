@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import initialState from '../actions/initialState';
+import * as Localization from 'expo-localization';
 
 const StateContext = createContext();
 
@@ -10,7 +11,10 @@ const StateProvider = ({ children }) => {
   return (
     <StateContext.Provider
       value={{
-        state,
+        state: {
+          ...state,
+          locale: !state.locale ? Localization.locale.substring(0, 2) : state.locale,
+        },
         setState,
       }}
     >

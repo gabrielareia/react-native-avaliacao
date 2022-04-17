@@ -1,4 +1,4 @@
-import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import { faFlag, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 import { View } from "react-native";
@@ -17,6 +17,13 @@ const SideMenuScreen = (props) => {
     setState({
       ...state,
       deviceTheme: state.deviceTheme === 'dark' ? 'light' : 'dark',
+    });
+  };
+
+  const changeLocalization = () => {
+    setState({
+      ...state,
+      locale: state.locale === 'en' ? 'pt' : 'en',
     });
   };
 
@@ -42,6 +49,17 @@ const SideMenuScreen = (props) => {
         )}
         pressColor="#888"
         onPress={changeMode}
+      />
+      <DrawerItem
+        style={sideMenuStyle(state).lightbulbStyle}
+        label={(props) => (
+          <IconButton
+            icon={faFlag}
+            {...props}
+          />
+        )}
+        pressColor="#888"
+        onPress={changeLocalization}
       />
     </DrawerContentScrollView>
   );
