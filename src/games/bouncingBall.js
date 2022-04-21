@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { Dimensions, Text } from 'react-native';
 import { useTime } from '../engine/context/time';
 import { useDebug } from '../engine/context/debug';
-import { addVectors, newVector, normalizeVector, scaleVector, vectorMagnitude } from '../engine/models/engine/vector';
+import {
+  addVectors,
+  newVector,
+  normalizeVector,
+  scaleVector,
+  vectorMagnitude,
+} from '../engine/models/engine/vector';
 import CircleRigidbody from '../engine/models/objects/rigidbody/circleRigidbody';
 import Circle from '../engine/models/objects/primitives/circle';
 import { toWorldPosition } from '../engine/utils/screenUtils';
@@ -18,6 +24,7 @@ const BouncingBall = (props) => {
     return worldPosition;
   };
 
+  const renderableCircles = useRef([]);
   const time = useRef(new Date().getTime());
   const touchWorldPosition = useRef(touchToWorldPosition());
   const { deltaTime, setDeltaTime } = useTime();
@@ -64,13 +71,34 @@ const BouncingBall = (props) => {
     }
   });
 
+  const filterCircles = (id) => {
+    const validCircles = [];
+
+    for (let i = 0; i < circles.length; i++) {
+      if (circles[i].id.current !== id) {
+        validCircles.push(circles[i]);
+      }
+    }
+
+    return validCircles;
+  };
+
+  const isThisCircle = (id) => {
+    for (let i = 0; i < circles.length; i++) {
+      if (circles[i].id.current === id) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleCircleCollisions = (position, force, acceleration, size, id) => {
-    if (circles && !circles.some((c) => c.id.current === id)) {
+    if (circles && !isThisCircle(id)) {
       return [position, force, acceleration];
     }
     const radius = size / 2.0;
 
-    const validCircles = circles.filter((c) => c.id.current !== id);
+    const validCircles = filterCircles(id);
 
     for (let i = 0; i < validCircles.length; i++) {
       const c = circles[i];
@@ -80,7 +108,7 @@ const BouncingBall = (props) => {
       const difference = newVector(dx, dy);
       const distance = vectorMagnitude(difference);
 
-      if (distance <= radius + cRadius) {        
+      if (distance <= radius + cRadius) {
         const normalVector = normalizeVector(difference, distance);
         const scaledVector = scaleVector(normalVector, cRadius + radius);
 
@@ -99,39 +127,42 @@ const BouncingBall = (props) => {
     return [position, force, acceleration];
   };
 
+  renderableCircles.current = new Array(circles.length);
+
+  for (let i = 0; i < circles.length; i++) {
+    const circle = circles[i];
+    renderableCircles.current[i] = circle.rigidbody
+      ? (
+        <CircleRigidbody
+          key={i}
+          id={circle.id}
+          color={circle.color}
+          size={circle.size}
+          positionRef={circle.position}
+          initialPosition={circle.initialPosition}
+          initialAcceleration={circle.initialAcceleration}
+          constrainedToScreen={circle.constrainedToScreen}
+          handleCollision={handleCircleCollisions}
+        />
+      )
+      : (
+        <Circle
+          key={i}
+          id={circle.id}
+          color={circle.color}
+          size={circle.size}
+          position={circle.initialPosition}
+          positionRef={circle.position}
+        />
+      );
+  }
+
   return (
     <>
       <Text style={debugTextStyle}>
         {debugText}
       </Text>
-      {
-        circles.map((c, i) => (
-          c.rigidbody
-            ? (
-              <CircleRigidbody
-                key={i}
-                id={c.id}
-                color={c.color}
-                size={c.size}
-                positionRef={c.position}
-                initialPosition={c.initialPosition}
-                initialAcceleration={c.initialAcceleration}
-                constrainedToScreen={c.constrainedToScreen}
-                handleCollision={handleCircleCollisions}
-              />
-            )
-            : (
-              <Circle
-                key={i}
-                id={c.id}
-                color={c.color}
-                size={c.size}
-                position={c.initialPosition}
-                positionRef={c.position}
-              />
-            )
-        ))
-      }
+      {renderableCircles.current}
     </>
   );
 };
