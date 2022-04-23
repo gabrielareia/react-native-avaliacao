@@ -14,12 +14,12 @@ export default sideMenuStyle = (state) => ({
     justifyContent: 'center',
     backgroundColor: (state && state.theme.sideMenuItemBackground) || '#888',
   },
-  lightbulbStyle: {
-    marginLeft: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 50,
-    aspectRatio: 1,
-    borderRadius: 10,
-  }
+  // lightbulbStyle: {
+  //   marginLeft: 'auto',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   width: 50,
+  //   aspectRatio: 1,
+  //   borderRadius: 10,
+  // }
 });

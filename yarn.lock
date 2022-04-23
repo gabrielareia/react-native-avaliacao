@@ -4755,6 +4755,11 @@ react-native-get-random-values@^1.7.2:
   dependencies:
     fast-base64-decode "^1.0.0"
 
+react-native-popover-view@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-popover-view/-/react-native-popover-view-5.0.1.tgz#dc85548f6e9468dda8fc3b8ae42c1094893c2679"
+  integrity sha512-8Hk8+azF5gYY0kpQthJ1n+0S1CQt4C67ODPRFdqLboAGUtja8Yv9svQBCSQZz2hrb4u2yjMrXq1SWbEBcSuIFQ==
+
 react-native-reanimated@~2.3.1:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.3.3.tgz#73de8ea495e59a091d848741e7037ac55d0235c4"

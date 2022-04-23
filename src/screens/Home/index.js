@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import { useLocalization } from "../../context/localization";
 import { Background, Paragraph, Title } from "../../styles/styles";
 import CustomButton from "../shared/button";
@@ -8,8 +7,8 @@ const HomeScreen = (props) => {
   const {
     navigation,
   } = props;
-  
-  const {localization} = useLocalization();
+
+  const { localization } = useLocalization();
 
   return (
     <Background>

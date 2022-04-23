@@ -53,5 +53,5 @@ export const ButtonText = styled.Text`
 export const StyledIcon = styled(FontAwesomeIcon)`
   color: ${(props) => props.theme.iconsColor};
   padding: ${(props) => props.size || 14}px;
-  margin: ${(props) => props.verticalPadding || 'auto'} ${(props) => props.horizontalPadding || 0};
+  margin: ${(props) => (props.verticalPadding && `${props.verticalPadding}px`) || 'auto'} ${(props) => (props.horizontalPadding && `${props.horizontalPadding}px`) || 0};
 `;

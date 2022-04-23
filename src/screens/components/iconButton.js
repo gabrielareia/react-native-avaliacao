@@ -6,15 +6,17 @@ const IconButton = (props) => {
   const {
     icon,
     size,
+    forwardRef,
   } = props;
   return (
-    <TouchableOpacity {...props} >
+    <TouchableOpacity ref={forwardRef} {...props} >
       <StyledIcon
+        {...props}
         icon={icon}
         size={size}
       />
     </TouchableOpacity>
-  );
+  );  
 };
 
 IconButton.defaultProps = {

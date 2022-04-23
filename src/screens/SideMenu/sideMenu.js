@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { faFlag, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
+import Popover from "react-native-popover-view";
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
-import { View } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useAppState } from "../../context/state";
 import IconButton from "../components/iconButton";
-import sideMenuStyle from "./styles/sideMenuStyle";
+import { StyledIcon } from "../../styles/styles";
 
 const SideMenuScreen = (props) => {
   const {
@@ -12,6 +14,7 @@ const SideMenuScreen = (props) => {
   } = props;
 
   const [state, setState] = useAppState();
+  const [showPopover, setShowPopover] = useState(false);
 
   const changeMode = () => {
     setState({
@@ -39,28 +42,34 @@ const SideMenuScreen = (props) => {
     >
       <DrawerItemList {...props} />
       <View style={{ marginTop: 'auto' }} />
-      <DrawerItem
-        style={sideMenuStyle(state).lightbulbStyle}
-        label={(props) => (
-          <IconButton
-            icon={faLightbulb}
-            {...props}
-          />
-        )}
-        pressColor="#888"
-        onPress={changeMode}
-      />
-      <DrawerItem
-        style={sideMenuStyle(state).lightbulbStyle}
-        label={(props) => (
-          <IconButton
-            icon={faFlag}
-            {...props}
-          />
-        )}
-        pressColor="#888"
-        onPress={changeLocalization}
-      />
+      <View style={{ flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between' }} >
+        <Popover
+          from={(sourceRef, showPopover) => (
+            <DrawerItem
+              label={() => (
+                <IconButton
+                  icon={faFlag}
+                  forwardRef={sourceRef}
+                />
+              )}
+              pressColor="#888"
+              onPress={showPopover}
+            />
+
+          )}
+        >
+          <Text>Option 1</Text>
+          <Text>Option 2</Text>
+        </Popover>
+        <DrawerItem
+          label={() => (
+            <IconButton
+              icon={faLightbulb}
+            />)}
+          pressColor="#888"
+          onPress={changeMode}
+        />
+      </View>
     </DrawerContentScrollView>
   );
 }
