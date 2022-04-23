@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import styled from "styled-components/native";
-import CustomButton from "../screens/shared/button";
 
 export const Background = styled.View`
   background: ${(props) => props.theme.background};

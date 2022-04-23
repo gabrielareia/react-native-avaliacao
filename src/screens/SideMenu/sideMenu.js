@@ -3,10 +3,10 @@ import { faFlag, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import Popover from "react-native-popover-view";
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { useAppState } from "../../context/state";
 import IconButton from "../components/iconButton";
-import { StyledIcon } from "../../styles/styles";
+import LocalizationFlag from './components/localizationFlag';
 
 const SideMenuScreen = (props) => {
   const {
@@ -23,11 +23,12 @@ const SideMenuScreen = (props) => {
     });
   };
 
-  const changeLocalization = () => {
+  const changeLocalization = (selectedLocale = 'en') => {
     setState({
       ...state,
-      locale: state.locale === 'en' ? 'pt' : 'en',
+      locale: selectedLocale,
     });
+    setShowPopover(false);
   };
 
   return (
@@ -44,7 +45,9 @@ const SideMenuScreen = (props) => {
       <View style={{ marginTop: 'auto' }} />
       <View style={{ flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between' }} >
         <Popover
-          from={(sourceRef, showPopover) => (
+          isVisible={showPopover}
+          onRequestClose={() => setShowPopover(false)}
+          from={(sourceRef) => (
             <DrawerItem
               label={() => (
                 <IconButton
@@ -53,13 +56,18 @@ const SideMenuScreen = (props) => {
                 />
               )}
               pressColor="#888"
-              onPress={showPopover}
+              onPress={() => setShowPopover(true)}
             />
-
           )}
         >
-          <Text>Option 1</Text>
-          <Text>Option 2</Text>
+          <LocalizationFlag
+            id={'BR'}
+            onPress={() => changeLocalization('pt')}
+          />
+          <LocalizationFlag
+            id={'US'}
+            onPress={() => changeLocalization('en')}
+          />
         </Popover>
         <DrawerItem
           label={() => (
