@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawerNavigation from "./drawer";
 import { getHeaderTitle } from '@react-navigation/elements';
@@ -7,7 +8,11 @@ import IconButton from "../screens/components/iconButton";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Games from '../games';
 
-const HomeStack = () => {
+const HomeStack = (props) => {
+  const {
+    changeTheme,
+  } = props;
+
   const Stack = createNativeStackNavigator();
 
   return (
@@ -34,9 +39,10 @@ const HomeStack = () => {
     >
       <Stack.Screen
         name="Root"
-        component={DrawerNavigation}
         options={{ headerShown: false }}
-      />
+      >
+        {(props) => <DrawerNavigation {...props} changeTheme={changeTheme} />}
+      </Stack.Screen>
       <Stack.Screen
         options={{ headerShown: false }}
         name="Game"
@@ -44,6 +50,10 @@ const HomeStack = () => {
       />
     </Stack.Navigator>
   );
+};
+
+HomeStack.propTypes = {
+  changeTheme: PropTypes.func.isRequired,
 }
 
 export default HomeStack;

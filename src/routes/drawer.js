@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AboutScreen from '../screens/About';
 import HomeScreen from "../screens/Home";
@@ -11,7 +12,10 @@ import SideMenuScreen from "../screens/SideMenu/sideMenu";
 import sideMenuStyle from "../screens/SideMenu/styles/sideMenuStyle";
 import { useLocalization } from "../context/localization";
 
-const DrawerNavigation = () => {
+const DrawerNavigation = (props) => {
+  const {
+    changeTheme,
+  } = props;
   const Drawer = createDrawerNavigator();
 
   const [state] = useAppState();
@@ -46,10 +50,16 @@ const DrawerNavigation = () => {
         },
       }}
     >
-      <Drawer.Screen name={localization.homeScreen.title} component={HomeScreen} />
+      <Drawer.Screen name={localization.homeScreen.title}>
+        {(props) => <HomeScreen {...props} changeTheme={changeTheme} />}
+      </Drawer.Screen>
       <Drawer.Screen name={localization.aboutScreen.title} component={AboutScreen} />
     </Drawer.Navigator>
   );
-}
+};
+
+DrawerNavigation.propTypes = {
+  changeTheme: PropTypes.func.isRequired,
+};
 
 export default DrawerNavigation;

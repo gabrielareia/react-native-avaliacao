@@ -2,16 +2,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import styled from "styled-components/native";
 
 export const Background = styled.View`
-  background: ${(props) => props.theme.background};
+  background:  ${(props) => props.theme.background};
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px 20px;
 `;
 
 export const Title = styled.Text`
   color: ${(props) => props.theme.color};
-  font-size: 44px;
+  font-size: 32px;
 `;
 
 export const Paragraph = styled.Text`
