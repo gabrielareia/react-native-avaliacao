@@ -16,18 +16,25 @@ export const StyledScroll = styled.ScrollView`
 `;
 
 export const Title = styled.Text`
-  color: ${(props) => props.theme.color};
-  font-size: 32px;
-`;
-
-export const Subtitle = styled.Text`
-  color: ${(props) => props.theme.color};
+  color: ${(props) => props.theme.titleColor};
+  margin: ${(props) => props.centered ? '0 auto' : '0'};
+  ${(props) => props.underlined && 'text-decoration: underline'};
+  font-weight: 600;
+  font-family: serif;
   font-size: 24px;
 `;
 
 export const Paragraph = styled.Text`
   color: ${(props) => props.theme.color};
-  font-size: 16px;
+  font-family: serif;
+  font-size: 15px;
+`;
+
+export const Separator = styled.View`
+  width: ${(props) => props.width || '100%'};
+  background-color: ${(props) => props.theme.separatorColor};
+  height: ${(props) => props.height || 0}px;
+  margin: ${(props) => props.spacing / 2}px auto;
 `;
 
 export const HeaderTitle = styled.Text`
@@ -51,13 +58,15 @@ export const StyledButton = styled.TouchableOpacity`
   margin: 25px auto;
   padding: 10px;
   align-items: center;
-  max-width: ${(props) => props.maxWidth || '120px'};
-  border-radius: 5px;
+  max-width: ${(props) => props.maxWidth || '180px'};
+  border-radius: 10px;
 `;
 
 export const ButtonText = styled.Text`
-  color: ${(props) => props.theme.iconsColor}; 
-  margin: 2px 5px;
+  color: ${(props) => props.theme.buttonText};
+  font-family: serif;
+  font-weight: bold;
+  margin: 4px 5px;
   text-align: center;
 `;
 

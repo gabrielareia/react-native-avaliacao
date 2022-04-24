@@ -7,6 +7,8 @@ import { HeaderBackground, HeaderTitle } from "../styles/styles";
 import IconButton from "../screens/components/iconButton";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Games from '../games';
+import PlaygroundScreen from "../screens/Playground";
+import { useLocalization } from "../context/localization";
 
 const HomeStack = (props) => {
   const {
@@ -14,6 +16,7 @@ const HomeStack = (props) => {
   } = props;
 
   const Stack = createNativeStackNavigator();
+  const { localization } = useLocalization();
 
   return (
     <Stack.Navigator
@@ -40,8 +43,14 @@ const HomeStack = (props) => {
       <Stack.Screen
         name="Root"
         options={{ headerShown: false }}
+        component={DrawerNavigation} />
+      <Stack.Screen
+        name="Playground"
+        options={{
+          title: localization.playgroundScreen.title,
+        }}
       >
-        {(props) => <DrawerNavigation {...props} changeTheme={changeTheme} />}
+        {(props) => <PlaygroundScreen {...props} changeTheme={changeTheme} />}
       </Stack.Screen>
       <Stack.Screen
         options={{ headerShown: false }}
