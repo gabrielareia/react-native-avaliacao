@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
+import { rgbToHex } from "../utils/colorUtils";
 
 const useRandomColorPalette = () => {
   const [colors, setColors] = useState({ lightColors: null, darkColors: null });
@@ -19,20 +20,11 @@ const useRandomColorPalette = () => {
   const setRandomPalette = () => {
     refetch({ throwOnError: true });
   };
-
-  const componentToHex = (c) => {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-  };
-
-  const rgbToHex = (r, g, b) => {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-  };
-
+  
   useEffect(() => {
     if (!isLoading && data && data.result) {
       const hexLightColors = data.result.map((r) => rgbToHex(r[0], r[1], r[2]))
-      const darkFactor = 0.3;
+      const darkFactor = 0.25;
       const hexDarkColors = data.result.map((r) => rgbToHex(Math.floor(r[0] * darkFactor), Math.floor(r[1] * darkFactor), Math.floor(r[2] * darkFactor)))
       setColors({ lightColors: hexLightColors, darkColors: hexDarkColors });
     };

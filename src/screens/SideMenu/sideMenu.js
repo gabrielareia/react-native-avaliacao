@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { faFlag, faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import { faEarthAmericas, faGlobe, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import Popover from "react-native-popover-view";
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
@@ -51,7 +51,7 @@ const SideMenuScreen = (props) => {
             <DrawerItem
               label={() => (
                 <IconButton
-                  icon={faFlag}
+                  icon={faEarthAmericas}
                   forwardRef={sourceRef}
                 />
               )}
