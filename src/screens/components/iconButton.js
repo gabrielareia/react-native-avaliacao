@@ -9,23 +9,27 @@ const IconButton = (props) => {
     forwardRef,
   } = props;
   return (
-    <TouchableOpacity ref={forwardRef} {...props} >
+    <TouchableOpacity
+      {...props}
+      ref={forwardRef}
+    >
       <StyledIcon
-        {...props}
         icon={icon}
         size={size}
       />
     </TouchableOpacity>
-  );  
+  );
 };
 
 IconButton.defaultProps = {
   size: 14,
+  onPress: null,
 };
 
 IconButton.propTypes = {
   icon: PropTypes.any.isRequired,
   size: PropTypes.number,
+  onPress: PropTypes.func,
 };
 
 export default IconButton;

@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 
-
-
 const useRandomColorPalette = () => {
   const [colors, setColors] = useState({ lightColors: null, darkColors: null });
 

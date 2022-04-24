@@ -3,15 +3,26 @@ import styled from "styled-components/native";
 
 export const Background = styled.View`
   background:  ${(props) => props.theme.background};
-  flex: 1;
-  align-items: center;
-  justify-content: flex-start;
   padding: 10px 20px;
+`;
+
+export const FlexView = styled.View`
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+
+export const StyledScroll = styled.ScrollView`
+  background:  ${(props) => props.theme.background};
 `;
 
 export const Title = styled.Text`
   color: ${(props) => props.theme.color};
   font-size: 32px;
+`;
+
+export const Subtitle = styled.Text`
+  color: ${(props) => props.theme.color};
+  font-size: 24px;
 `;
 
 export const Paragraph = styled.Text`
@@ -37,16 +48,17 @@ export const HeaderBackground = styled.View`
 
 export const StyledButton = styled.TouchableOpacity`
   background: ${(props) => props.theme.buttonBackground};
-  margin: 15px;
+  margin: 25px auto;
   padding: 10px;
-  max-height: ${(props) => props.maxHeight || '60px'};
-  max-width: ${(props) => props.maxWidth || '90px'};
+  align-items: center;
+  max-width: ${(props) => props.maxWidth || '120px'};
   border-radius: 5px;
 `;
 
 export const ButtonText = styled.Text`
   color: ${(props) => props.theme.iconsColor}; 
   margin: 2px 5px;
+  text-align: center;
 `;
 
 export const StyledIcon = styled(FontAwesomeIcon)`

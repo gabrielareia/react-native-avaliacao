@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
+import { Linking } from "react-native";
 import PropTypes from 'prop-types';
 import { useLocalization } from "../../context/localization";
-import useRandomColorPalette from "../../hooks/useRandomColorPalette";
-import { Background, Paragraph, Title } from "../../styles/styles";
+import { Background, Hyperlink, Paragraph, StyledScroll, Title } from "../../styles/styles";
 import CustomButton from "../shared/button";
 
 const HomeScreen = (props) => {
@@ -14,20 +14,32 @@ const HomeScreen = (props) => {
   const { localization } = useLocalization();
 
   return (
-    <Background>
-      {/* <Title>{localization.homeScreen.title}</Title> */}
-      <Paragraph>{localization.homeScreen.body}</Paragraph>
-      <CustomButton
-        onPress={() => navigation.navigate('Game')}
-      >
-        {localization.homeScreen.playButton}
-      </CustomButton>
-      <CustomButton
-        onPress={changeTheme}
-      >
-        Random theme
-      </CustomButton>
-    </Background>
+    <StyledScroll>
+      <Background>
+
+        <Paragraph>{localization.homeScreen.introduction}</Paragraph>
+        <CustomButton
+          onPress={() => Linking.openURL('https://github.com/gabrielareia/react-native-avaliacao')}
+        >
+          {localization.homeScreen.sourceCodeButton}
+        </CustomButton>
+        <Paragraph>{localization.homeScreen.randomColorParagraph}</Paragraph>
+        <CustomButton
+          onPress={changeTheme}
+        >
+          {localization.homeScreen.changeColorButton}
+        </CustomButton>
+
+        <Paragraph>{localization.homeScreen.body}</Paragraph>
+        <Paragraph>{localization.homeScreen.gameText}</Paragraph>
+        <CustomButton
+          onPress={() => navigation.navigate('Game')}
+        >
+          {localization.homeScreen.playButton}
+        </CustomButton>
+
+      </Background>
+    </StyledScroll>
   );
 };
 
