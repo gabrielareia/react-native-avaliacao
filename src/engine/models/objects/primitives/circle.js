@@ -17,8 +17,6 @@ const Circle = (props) => {
   const styles = StyleSheet.create({
     element: {
       backgroundColor: color,
-      borderTopColor: 'black',
-      borderTopWidth: 2,
     },
   });
 

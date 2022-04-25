@@ -11,7 +11,6 @@ import {
 } from '../';
 import { newVector } from '../models/engine/vector';
 import 'react-native-get-random-values';
-import { v4 as newUuid } from 'uuid';
 
 const dimension = Dimensions.get('window');
 
@@ -25,17 +24,14 @@ const withRigidbody = (WrappedComponent) => ({ ...props }) => {
     positionRef,
     constrainedToScreen,
     handleCollision,
+    hitWallRef,
   } = { ...props };
 
   const position = useRef(initialPosition || newVector(0, 0));
   const force = useRef(initialForce || newVector(0, 0));
   const acceleration = useRef(initialAcceleration || newVector(0, 0));
-  
-  const { deltaTime } = useTime();
 
-  useEffect(() => {
-    id.current = newUuid();
-  }, []);
+  const { deltaTime } = useTime();
 
   useEffect(() => {
     force.current = gravityForce(force.current, deltaTime);
@@ -52,12 +48,12 @@ const withRigidbody = (WrappedComponent) => ({ ...props }) => {
         force.current,
         acceleration.current,
         size,
-        id.current,
+        id,
       );
     }
 
     if (constrainedToScreen) {
-      [position.current, force.current, acceleration.current] = checkBounds(
+      [position.current, force.current, acceleration.current, hitWallRef.current] = checkBounds(
         position.current,
         force.current,
         acceleration.current,
@@ -68,11 +64,11 @@ const withRigidbody = (WrappedComponent) => ({ ...props }) => {
     if (positionRef) positionRef.current = position.current;
   });
 
-  return <WrappedComponent
+  return (<WrappedComponent
     {...props}
     position={position.current}
     rotation={0.0}
-  />;
+  />);
 };
 
 withRigidbody.propTypes = {
@@ -83,6 +79,7 @@ withRigidbody.propTypes = {
   positionRef: PropTypes.object.isRequired,
   constrainedToScreen: PropTypes.bool.isRequired,
   handleCollision: PropTypes.func.isRequired,
+  hitWallRef: PropTypes.object.isRequired,
 };
 
 export default withRigidbody;

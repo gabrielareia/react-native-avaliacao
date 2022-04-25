@@ -34,4 +34,7 @@ export const pt = {
     aboutMeTitle: 'Sobre mim:',
     aboutMe: 'Meu nome é Gabriel Areia, eu sou um estudante de ciência da computação e atualmente trabalho com .NET e React. Você pode saber mais sobre mim e meu currículo no meu GitHub ou Linkedin:',
   },
+  gameScreen: {
+    highScore: 'Recorde:'
+  }
 };
