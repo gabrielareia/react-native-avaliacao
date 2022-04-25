@@ -10,7 +10,7 @@ const LocalizationProvider = (props) => {
   } = props;
 
   const [state] = useAppState();
-  const { locale } = state
+  const { locale } = state;
 
   const appLocaliztion = localization[locale || 'en'] ||  localization['en'];
 

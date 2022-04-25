@@ -16,8 +16,8 @@ export const en = {
     },
     game: {
       gameTitle: "Little game created with React Native",
-      gameParagraph: "I wanted to do a simlpe app, and not spend too much time creating fake stuff like a fake social media or restaurant template, that would only fit the purpouse of showing that I can create apps templates, but wouldn't have any creativity or originality.\n\n" +
-        "Instead I decided to do the simplest app I could think of, using all those techniques described in the \"About\" section, and I spent some time doing something that I love, which is creating games from scratch, but in this case using only React Native for that.\n\n" +
+      gameParagraph: "I wanted to do a simlpe app, and not spend too much time creating fake stuff like a fake social media or restaurant template, that would only fit the purpouse of showing that I can create templates, but wouldn't have any creativity or originality.\n\n" +
+        "Instead I decided to do the simplest app I could think of, using all those techniques described in the \"About\" section, and I spent some time doing something that I really like, which is creating games from scratch, but in this case using only React Native for that.\n\n" +
         "I wanted to test the speed of React Native, and even though it wasn't designed for that, I wanted to see if it would manage to deal with that much processing and renders per frame.\n\n" +
         "So I created a very basic game, completely using React. Every component in the game is a React component, rendered just like any other React component.\n\n" +
         "I had to create my own little physics engine for that, and come up with creative solutions to render the components where I wanted them to be each frame.\n\n" +
@@ -28,7 +28,7 @@ export const en = {
   aboutScreen: {
     title: 'About',
     aboutAppTitle: 'About this app:',
-    aboutThisApp: "I created this demo app to apply what I've learned about React Native, custom hooks, HOC (Higher Order Components), React-Query, Context API and Styled components.\n" +
+    aboutThisApp: "I created this demo app to apply what I've learned about React Native, custom hooks, HOC (Higher-Order Components), React-Query, Context API and Styled components.\n" +
       'The source code for this app is available on my GitHub:',
     sourceCodeButton: 'Read source code',
     aboutMeTitle: 'About me:',

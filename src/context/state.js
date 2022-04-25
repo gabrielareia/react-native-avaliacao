@@ -13,7 +13,7 @@ const StateProvider = ({ children }) => {
       value={{
         state: {
           ...state,
-          locale: !state.locale ? ('en' || Localization.locale.substring(0, 2)) : state.locale,
+          locale: !state.locale ? (Localization.locale.substring(0, 2) || 'en') : state.locale,
         },
         setState,
       }}

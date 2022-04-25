@@ -2,8 +2,8 @@ export const pt = {
   homeScreen: {
     title: 'Início',
     welcomeTitle: 'Bem-vindo',
-    introduction: 'Esse pequeno aplicativo criado com React Native é minha pequena sala de testes, onde eu vou implementar algumas coisas que eu estou aprendendo ou acho curioso e interessante.\n\n' +
-      'Por enquanto não tem muito o que fazer por aqui, mas eu pretendo continuar atualizando o aplicativo e adicionando mais coisas de vez em quando.\n\nEu espero que você ache as coisas interessantes também, como eu acho.\n\nDivirta-se.',
+    introduction: 'Esse aplicativo criado com React Native é minha pequena sala de testes, onde eu vou implementar algumas coisas que eu estou aprendendo ou acho curioso e interessante.\n\n' +
+      'Por enquanto não tem muito o que fazer por aqui, mas eu pretendo continuar atualizando o aplicativo e adicionando mais coisas de vez em quando.\n\nEu espero que, assim como eu, você também ache as coisas aqui interessantes.\n\nDivirta-se.',
       goToPlaygroundButton: "Começar",
   },
   playgroundScreen: {
@@ -28,7 +28,7 @@ export const pt = {
   aboutScreen: {
     title: 'Sobre',
     aboutAppTitle: 'Sobre esse aplicativo:',
-    aboutThisApp: 'Eu criei esse aplicativo de demonstração para aplicar o que eu aprendi sobre React Native, hooks customizados, HOC (Higher Order Components), React-Query, Context API e Styled components.\n' +
+    aboutThisApp: 'Eu criei esse aplicativo de demonstração para aplicar o que eu aprendi sobre React Native, hooks customizados, HOC (Higher-Order Components), React-Query, Context API e Styled components.\n' +
     'O código fonte para este aplicativo está disponível no meu GitHub:',
     sourceCodeButton: 'Leia o código fonte',
     aboutMeTitle: 'Sobre mim:',
