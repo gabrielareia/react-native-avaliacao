@@ -44,7 +44,7 @@ const Games = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#448',
+    backgroundColor: '#303c40',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },

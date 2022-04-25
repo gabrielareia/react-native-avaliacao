@@ -13,6 +13,8 @@ import { newVector } from '../models/engine/vector';
 import 'react-native-get-random-values';
 import { v4 as newUuid } from 'uuid';
 
+const dimension = Dimensions.get('window');
+
 const withRigidbody = (WrappedComponent) => ({ ...props }) => {
   const {
     id,
@@ -25,9 +27,6 @@ const withRigidbody = (WrappedComponent) => ({ ...props }) => {
     handleCollision,
   } = { ...props };
 
-  const dimension = Dimensions.get('window');
-
-  
   const position = useRef(initialPosition || newVector(0, 0));
   const force = useRef(initialForce || newVector(0, 0));
   const acceleration = useRef(initialAcceleration || newVector(0, 0));

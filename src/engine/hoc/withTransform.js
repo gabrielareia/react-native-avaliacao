@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { Dimensions } from 'react-native';
 import { toScreenCoordinates } from '../utils/screenUtils';
 
+const dimension = Dimensions.get('window');
+
 const withTransform = (WrappedComponent) => ({ ...props }) => {
   const {
     position,
     rotation,
   } = { ...props };
-
-  const dimension = Dimensions.get('window');
 
   return (
     <WrappedComponent

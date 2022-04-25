@@ -14,40 +14,42 @@ import CircleRigidbody from '../engine/models/objects/rigidbody/circleRigidbody'
 import Circle from '../engine/models/objects/primitives/circle';
 import { toWorldPosition } from '../engine/utils/screenUtils';
 
+const dimensions = Dimensions.get('window');
+
 const BouncingBall = (props) => {
   const {
     touchPosition,
   } = props;
 
   const touchToWorldPosition = () => {
-    const worldPosition = toWorldPosition(touchPosition, Dimensions.get('window'));
+    const worldPosition = toWorldPosition(touchPosition, dimensions);
     return worldPosition;
   };
 
   const renderableCircles = useRef([]);
-  const time = useRef(new Date().getTime());
+  const time = useRef(Date.now());
   const touchWorldPosition = useRef(touchToWorldPosition());
   const { deltaTime, setDeltaTime } = useTime();
-  const { debugText, setDebugText, debugTextStyle } = useDebug();
+  // const { debugText, setDebugText, debugTextStyle } = useDebug();
 
   const circles = [
     {
       id: useRef(),
-      color: "blue",
+      color: "#2244af",
       size: 75,
       initialPosition: touchWorldPosition.current,
       initialAcceleration: newVector(2, 0),
-      position: useRef(newVector(0, 0)),
+      position: newVector(0, 0),
       constrainedToScreen: false,
       rigidbody: false,
     },
     {
       id: useRef(),
-      color: 'red',
+      color: '#d3c835',
       size: 50,
       initialPosition: newVector(20, 150),
       initialAcceleration: newVector(0, 0),
-      position: useRef(newVector(0, 0)),
+      position: newVector(0, 0),
       constrainedToScreen: true,
       rigidbody: true,
     },
@@ -58,13 +60,13 @@ const BouncingBall = (props) => {
   }, [touchPosition]);
 
   useEffect(() => {
-    setDebugText(`FPS: ${Math.floor(1.0 / deltaTime)} 
-      \nDelta time: ${deltaTime}
-      \nTouch position: (x: ${touchPosition.x.toFixed(2)}, y: ${touchPosition.y.toFixed(2)})
-      \nTouch world position: (x: ${touchWorldPosition.current.x.toFixed(2)}, y: ${touchWorldPosition.current.y.toFixed(2)})`
-    );
+    // setDebugText(`FPS: ${Math.floor(1.0 / deltaTime)} 
+    //   \nDelta time: ${deltaTime}
+    //   \nTouch position: (x: ${touchPosition.x.toFixed(2)}, y: ${touchPosition.y.toFixed(2)})
+    //   \nTouch world position: (x: ${touchWorldPosition.current.x.toFixed(2)}, y: ${touchWorldPosition.current.y.toFixed(2)})`
+    // );
 
-    const newTime = new Date().getTime();
+    const newTime = Date.now();
     if (newTime > time.current) {
       setDeltaTime((newTime - time.current) / 1000.0);
       time.current = newTime;
@@ -157,11 +159,25 @@ const BouncingBall = (props) => {
       );
   }
 
+  // const counter = useRef(0);
+  // const times = useRef([]);
+
+  // useEffect(() => {
+  //   if (counter.current < 120) {
+  //     times.current.push({ render: counter.current, time: new Date().toISOString().substring(11) });
+  //     counter.current = counter.current + 1;
+  //   }
+  //   if (counter.current === 120) {
+  //     console.log(times.current)
+  //     counter.current = counter.current + 1;
+  //   }
+  // });
+
   return (
     <>
-      <Text style={debugTextStyle}>
+      {/* <Text style={debugTextStyle}>
         {debugText}
-      </Text>
+      </Text> */}
       {renderableCircles.current}
     </>
   );
